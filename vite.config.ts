@@ -24,17 +24,12 @@
 
 
 
-
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  build: {
-    rollupOptions: {
-      external: ['react-is'], // Add this line
-    },
-  },
   server: {
     port: 5173,
     open: true,
@@ -42,9 +37,8 @@ export default defineConfig({
       '/api': {
         target: 'https://michaelmahberbackend.onrender.com',
         changeOrigin: true,
-        secure: false, // Important for HTTPS proxies
-        rewrite: (path) => path.replace(/^\/api/, '/api'), // Keeps /api prefix
+        secure: false,
       },
     },
   },
-});
+})
