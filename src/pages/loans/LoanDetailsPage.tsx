@@ -381,7 +381,7 @@ const LoanDetailsPage = () => {
             </div>
 
             {/* Debug info - remove in production */}
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
+            {/* <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
                 <h3 className="font-semibold text-gray-700 mb-2">Debug Info</h3>
                 <p className="text-sm">Loan Status: <span className="font-mono">{loan.status}</span></p>
                 <p className="text-sm">Remaining Principal: <span className="font-mono">{loan.remainingPrincipal}</span></p>
@@ -390,7 +390,7 @@ const LoanDetailsPage = () => {
                 <p className="text-sm">Conditions: <span className="font-mono">
                     {isOwner && loan.status === 'active' && loan.remainingPrincipal > 0 ? '✅ All met' : '❌ Not met'}
                 </span></p>
-            </div>
+            </div> */}
 
             {/* Rest of your component remains the same... */}
             {/* Main Content Grid */}
