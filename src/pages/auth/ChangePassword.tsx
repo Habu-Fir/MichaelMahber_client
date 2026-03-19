@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -173,12 +173,14 @@ const ChangePassword = () => {
                             type="submit"
                             disabled={isLoading}
                             className={cn(
-                                "w-full bg-primary-600 text-white font-semibold rounded-xl",
+                                "w-full font-semibold rounded-xl",
                                 "py-4 sm:py-3 text-base sm:text-lg",
-                                "transition-all transform active:scale-[0.98]",
-                                "hover:bg-primary-700",
+                                "transition-all transform hover:scale-[1.02] active:scale-[0.98]",
                                 "disabled:opacity-50 disabled:cursor-not-allowed",
-                                "shadow-lg shadow-primary-600/30"
+                                "shadow-lg shadow-amber-500/30",
+                                "bg-gradient-to-r from-amber-500 to-yellow-600",
+                                "hover:from-amber-600 hover:to-yellow-700",
+                                "text-white"
                             )}
                         >
                             {isLoading ? (

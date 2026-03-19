@@ -155,13 +155,13 @@ const LoansPage = () => {
                     </p>
                 </div>
 
-                {/* Request Loan Button - visible to all members */}
+                {/* Request Loan Button - UPDATED TO GOLD */}
                 <button
                     onClick={() => navigate('/loans/request')}
-                    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl transition-colors shadow-lg shadow-primary-600/20"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white rounded-xl transition-all transform hover:scale-105 shadow-lg shadow-amber-500/30 font-medium"
                 >
                     <Plus className="w-5 h-5" />
-                    <span className="font-medium">Request Loan</span>
+                    <span>Request Loan</span>
                 </button>
             </div>
 
@@ -229,7 +229,6 @@ const LoansPage = () => {
                                 <option value="approved">Approved</option>
                                 <option value="active">Active</option>
                                 <option value="payment_pending">Payment Pending</option>
-
                                 <option value="completed">Completed</option>
                                 <option value="rejected">Rejected</option>
                             </select>
@@ -247,23 +246,7 @@ const LoansPage = () => {
                         <p className="text-gray-500 mb-6">No loans match your criteria.</p>
                         <button
                             onClick={() => navigate('/loans/request')}
-                            className={cn(
-                                "px-6 py-3 rounded-xl inline-flex items-center gap-2 font-semibold",
-                                "transition-all transform active:scale-[0.97]",
-
-                                // ✅ FIXED gradient
-                                "bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600",
-
-                                // Text
-                                "text-gray-900",
-
-                                // Shadow
-                                "shadow-md shadow-yellow-500/30",
-
-                                // Hover
-                                "hover:from-yellow-500 hover:to-yellow-700",
-                                "hover:scale-[1.03]"
-                            )}
+                            className="px-6 py-3 rounded-xl inline-flex items-center gap-2 font-semibold bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white shadow-md shadow-amber-500/30 transition-all transform hover:scale-105"
                         >
                             <Plus className="w-5 h-5" />
                             Request Loan

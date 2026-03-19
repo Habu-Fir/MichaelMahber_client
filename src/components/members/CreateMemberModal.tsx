@@ -222,7 +222,7 @@ const CreateMemberModal: React.FC<CreateMemberModalProps> = ({
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="flex-1 px-4 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                                className="flex-1 px-4 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-medium rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/30"
                             >
                                 {isSubmitting ? (
                                     <>

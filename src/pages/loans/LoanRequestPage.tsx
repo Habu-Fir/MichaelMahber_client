@@ -15,7 +15,8 @@ import {
     Home,
     Heart,
     CreditCard,
-    FileText
+    FileText,
+    X
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useState } from 'react';
@@ -238,20 +239,23 @@ const LoanRequestPage = () => {
                     />
                 </div>
 
-                {/* Submit Button */}
+                {/* Buttons */}
                 <div className="flex gap-3 pt-4">
+                    {/* Cancel Button - Styled with X icon */}
                     <button
                         type="button"
                         onClick={() => navigate('/loans')}
-                        className="flex-1 px-4 py-3 border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
+                        className="flex-1 px-4 py-3 border-2 border-gray-300 bg-white text-gray-700 font-semibold rounded-xl hover:bg-gray-100 hover:border-gray-400 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-md"
                     >
+                        <X className="w-5 h-5" />
                         Cancel
                     </button>
-                    {/* Submit Button - PROMINENT */}
+
+                    {/* Submit Button - GOLDISH */}
                     <button
                         type="submit"
                         disabled={requestLoan.isPending}
-                        className="w-full px-8 py-4 bg-primary-600 hover:bg-primary-700 text-amber-900 font-bold text-lg rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3 shadow-xl shadow-primary-600/40 border-2 border-primary-400"
+                        className="flex-1 px-4 py-3 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/40 border border-amber-400"
                     >
                         {requestLoan.isPending ? (
                             <>
@@ -259,7 +263,10 @@ const LoanRequestPage = () => {
                                 Submitting...
                             </>
                         ) : (
-                            'Submit Loan Request'
+                            <>
+                                <HandCoins className="w-5 h-5" />
+                                Submit Request
+                            </>
                         )}
                     </button>
                 </div>
