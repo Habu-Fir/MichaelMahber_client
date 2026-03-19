@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useLoans } from '../../hooks/useLoans';
@@ -229,7 +229,7 @@ const LoansPage = () => {
                                 <option value="approved">Approved</option>
                                 <option value="active">Active</option>
                                 <option value="payment_pending">Payment Pending</option>
-                                
+
                                 <option value="completed">Completed</option>
                                 <option value="rejected">Rejected</option>
                             </select>
@@ -247,7 +247,23 @@ const LoansPage = () => {
                         <p className="text-gray-500 mb-6">No loans match your criteria.</p>
                         <button
                             onClick={() => navigate('/loans/request')}
-                            className="px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 inline-flex items-center gap-2"
+                            className={cn(
+                                "px-6 py-3 rounded-xl inline-flex items-center gap-2 font-semibold",
+                                "transition-all transform active:scale-[0.97]",
+
+                                // ✅ FIXED gradient
+                                "bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600",
+
+                                // Text
+                                "text-gray-900",
+
+                                // Shadow
+                                "shadow-md shadow-yellow-500/30",
+
+                                // Hover
+                                "hover:from-yellow-500 hover:to-yellow-700",
+                                "hover:scale-[1.03]"
+                            )}
                         >
                             <Plus className="w-5 h-5" />
                             Request Loan
