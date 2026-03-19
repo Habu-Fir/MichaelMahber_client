@@ -3,5 +3,11 @@
     "installCommand": "npm install",
     "outputDirectory": "dist",
     "devCommand": "npm run dev",
-    "framework": "vite"
+    "framework": "vite",
+    "rewrites": [
+        {
+            "source": "/((?!.*\\.(?:css|js|png|jpg|jpeg|gif|svg|ico|json|webp)$).*)",
+            "destination": "/index.html"
+        }
+    ]
 }
