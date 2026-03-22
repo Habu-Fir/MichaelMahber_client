@@ -6,14 +6,13 @@ import {
     Download,
     User,
     Calendar,
-
     FileText,
     AlertCircle,
     Check,
     X,
-    RefreshCw
+    RefreshCw,
+    Eye
 } from 'lucide-react';
-
 import { formatCurrency, formatDateTime } from '../../lib/utils';
 import toast from 'react-hot-toast';
 
@@ -133,7 +132,7 @@ const PendingPaymentsPage = () => {
                     <p className="text-gray-600 mb-6">Failed to load pending payments.</p>
                     <button
                         onClick={() => refetch()}
-                        className="px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700"
+                        className="px-6 py-3 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-medium rounded-xl transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-amber-500/30"
                     >
                         Try Again
                     </button>
@@ -241,10 +240,11 @@ const PendingPaymentsPage = () => {
                                             href={payment.payment.receiptUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="p-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
+                                            className="p-3 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white rounded-xl transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-amber-500/30 flex items-center gap-2"
                                             title="View Receipt"
                                         >
-                                            <FileText className="w-5 h-5 text-gray-600" />
+                                            <Eye className="w-5 h-5" />
+                                            <span className="text-sm font-medium hidden sm:inline">Receipt</span>
                                         </a>
                                     )}
                                     <button
@@ -253,8 +253,9 @@ const PendingPaymentsPage = () => {
                                             setSelectedPayment(payment);
                                             setShowModal(true);
                                         }}
-                                        className="px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors font-medium"
+                                        className="px-6 py-3 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-medium rounded-xl transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-amber-500/30 flex items-center gap-2"
                                     >
+                                        <CheckCircle className="w-5 h-5" />
                                         Review
                                     </button>
                                 </div>
@@ -332,7 +333,7 @@ const PendingPaymentsPage = () => {
                                         href={selectedPayment.payment.receiptUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700"
+                                        className="inline-flex items-center gap-2 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white px-4 py-2 rounded-xl transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-amber-500/30"
                                     >
                                         <FileText className="w-4 h-4" />
                                         View Receipt
@@ -360,10 +361,19 @@ const PendingPaymentsPage = () => {
                                 <button
                                     onClick={() => handleApprove(selectedPayment.loanId, selectedPayment.payment.index)}
                                     disabled={approvePayment.isPending}
-                                    className="flex-1 px-4 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                                    className="flex-1 px-4 py-3 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-medium rounded-xl transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/30"
                                 >
-                                    <Check className="w-4 h-4" />
-                                    Approve
+                                    {approvePayment.isPending ? (
+                                        <>
+                                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                            Processing...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Check className="w-4 h-4" />
+                                            Approve
+                                        </>
+                                    )}
                                 </button>
                             </div>
                         </div>

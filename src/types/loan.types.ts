@@ -55,6 +55,11 @@ export interface Payment {
 }
 
 export interface PendingPayment {
+    [x: string]: any;
+    _id: Key | null | undefined;
+    paymentDate(paymentDate: any): import("react").ReactNode;
+    principalPortion(principalPortion: any): import("react").ReactNode;
+    interestPortion(interestPortion: any): import("react").ReactNode;
     amount: number;
     paymentMethod: string;
     receiptUrl?: string;
