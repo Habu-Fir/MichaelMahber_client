@@ -1,3 +1,5 @@
+import type { Key } from "react";
+
 export interface Loan {
     _id: string;
     loanNumber: string;
