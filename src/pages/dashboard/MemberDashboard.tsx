@@ -132,7 +132,7 @@ const MemberDashboard = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Total Pool Card - Gold Gradient */}
                 {/* Total Pool Card - Gold Gradient */}
-                <div className="bg-linear-to-r from-amber-500 to-yellow-600 rounded-xl p-5 text-white shadow-lg">
+                <div className="bg-gradient-to-r from-amber-500 to-yellow-600 rounded-xl p-5 text-white shadow-lg">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium text-amber-100">Total Pool</p>

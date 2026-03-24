@@ -155,3 +155,55 @@ export const useMyLoans = () => {
     queryFn: () => loanService.getMyLoans(),
   });
 };
+// ==================== GET ALL LOANS WITHOUT PAGINATION (FOR DASHBOARDS) ====================
+import { useState, useEffect } from 'react';
+
+export const useAllLoans = () => {
+  const [allLoans, setAllLoans] = useState<Loan[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const fetchAllLoans = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        let page = 1;
+        let allData: Loan[] = [];
+        let hasMore = true;
+        let totalCount = 0;
+
+        while (hasMore) {
+          const response = await loanService.getAllLoans({ 
+            page, 
+            limit: 50 
+          });
+          
+          totalCount = response.total;
+          allData = [...allData, ...response.data];
+          
+          // Stop if we got fewer items than limit or reached total
+          hasMore = response.data.length === 50 && allData.length < totalCount;
+          page++;
+        }
+        
+        setAllLoans(allData);
+        setTotal(totalCount);
+      } catch (err) {
+        setError(err as Error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAllLoans();
+  }, []);
+
+  return { 
+    data: { data: allLoans, total, pages: 1, page: 1 }, 
+    isLoading, 
+    error,
+    refetch: () => {}
+  };
+};
