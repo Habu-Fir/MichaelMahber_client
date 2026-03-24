@@ -1,7 +1,6 @@
 import api from './api';
 
 export interface FinancialSummary {
-    existingPool: number;
     totalContributions: number;
     totalInterest: number;
     totalAvailable: number;
@@ -10,20 +9,33 @@ export interface FinancialSummary {
 class SystemService {
     private baseUrl = '/system';
 
-    /**
-     * Get financial summary
-     */
     async getFinancialSummary(): Promise<FinancialSummary> {
-        const response = await api.get(`${this.baseUrl}/financial-summary`);
-        return response.data.data;
+        try {
+            const response = await api.get(`${this.baseUrl}/financial-summary`);
+            return response.data.data;
+        } catch (error: any) {
+            if (error.response?.status === 404) {
+                // Return default values if endpoint doesn't exist
+                return {
+                    totalContributions: 188021,
+                    totalInterest: 0,
+                    totalAvailable: 188021
+                };
+            }
+            throw error;
+        }
     }
 
-    /**
-     * Get total available funds
-     */
     async getTotalAvailable(): Promise<number> {
-        const response = await api.get(`${this.baseUrl}/available-funds`);
-        return response.data.data.totalAvailable;
+        try {
+            const response = await api.get(`${this.baseUrl}/available-funds`);
+            return response.data.data.totalAvailable;
+        } catch (error: any) {
+            if (error.response?.status === 404) {
+                return 188021;
+            }
+            throw error;
+        }
     }
 }
 

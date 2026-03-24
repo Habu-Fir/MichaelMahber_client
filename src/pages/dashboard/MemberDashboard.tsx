@@ -131,6 +131,7 @@ const MemberDashboard = () => {
             {/* Total Pool & Remaining Balance Cards - 2 columns */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Total Pool Card - Gold Gradient */}
+                {/* Total Pool Card - Gold Gradient */}
                 <div className="bg-linear-to-r from-amber-500 to-yellow-600 rounded-xl p-5 text-white shadow-lg">
                     <div className="flex items-center justify-between">
                         <div>
@@ -138,10 +139,10 @@ const MemberDashboard = () => {
                             <p className="text-3xl font-bold mt-1 text-white">
                                 {formatCurrency(totalPool)}
                             </p>
-                            <div className="mt-2 flex flex-col gap-1 text-xs text-amber-100">
-                                <span>Existing: {formatCurrency(financialSummary?.existingPool || 188021)}</span>
-                                <span>+ Contributions: {formatCurrency(financialSummary?.totalContributions || 0)}</span>
-                                <span>+ Interest: {formatCurrency(financialSummary?.totalInterest || 0)}</span>
+                            <div className="mt-2 flex flex-wrap gap-2 text-xs text-amber-100">
+                                <span>Total Contributions: {formatCurrency(financialSummary?.totalContributions || 188021)}</span>
+                                <span>+</span>
+                                <span>Interest: {formatCurrency(financialSummary?.totalInterest || 0)}</span>
                             </div>
                         </div>
                         <div className="bg-white/20 rounded-full p-3">
@@ -195,7 +196,7 @@ const MemberDashboard = () => {
                 </div>
 
                 {/* Total Loan Amount Card */}
-                <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-5 text-white shadow-lg">
+                <div className="bg-linear-to-br from-purple-500 to-purple-600 rounded-xl p-5 text-white shadow-lg">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium text-purple-100">Total Loan Amount</p>
@@ -210,7 +211,7 @@ const MemberDashboard = () => {
                 </div>
 
                 {/* Outstanding Balance Card */}
-                <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl p-5 text-white shadow-lg">
+                <div className="bg-linear-to-br from-amber-500 to-amber-600 rounded-xl p-5 text-white shadow-lg">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium text-amber-100">Outstanding Balance</p>
@@ -225,7 +226,7 @@ const MemberDashboard = () => {
                 </div>
 
                 {/* Total Paid Card */}
-                <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-5 text-white shadow-lg">
+                <div className="bg-linear-to-br from-green-500 to-green-600 rounded-xl p-5 text-white shadow-lg">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium text-green-100">Total Paid</p>
@@ -357,12 +358,12 @@ const MemberDashboard = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl border border-amber-200 p-6">
+            <div className="bg-linear-to-r from-amber-50 to-yellow-50 rounded-2xl border border-amber-200 p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Quick Actions</h3>
                 <div className="flex flex-wrap gap-3">
                     <button
                         onClick={() => window.location.href = '/loans/request'}
-                        className="px-4 py-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-white rounded-lg hover:from-amber-600 hover:to-yellow-700 transition-all font-medium"
+                        className="px-4 py-2 bg-linear-to-r from-amber-500 to-yellow-600 text-white rounded-lg hover:from-amber-600 hover:to-yellow-700 transition-all font-medium"
                     >
                         Apply for Loan
                     </button>

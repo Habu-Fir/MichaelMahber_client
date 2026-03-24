@@ -4,6 +4,7 @@ import type { CreateUserData, UpdateUserData, UserFilters } from '../types/user.
 import toast from 'react-hot-toast';
 import { CheckCircle, Copy } from 'lucide-react';
 
+// ==================== GET ALL USERS ====================
 export const useUsers = (filters?: UserFilters) => {
   return useQuery({
     queryKey: ['users', filters],
@@ -11,6 +12,7 @@ export const useUsers = (filters?: UserFilters) => {
   });
 };
 
+// ==================== GET SINGLE USER ====================
 export const useUser = (id: string) => {
   return useQuery({
     queryKey: ['user', id],
@@ -19,6 +21,42 @@ export const useUser = (id: string) => {
   });
 };
 
+// ==================== GET USER STATISTICS (NEW) ====================
+/**
+ * Get user statistics for dashboard
+ * Returns:
+ * - total: Total number of users
+ * - byRole: Breakdown by role (super_admin, admin, approver, member)
+ */
+export const useUserStats = () => {
+  return useQuery({
+    queryKey: ['userStats'],
+    queryFn: () => userService.getUserStats(),
+    staleTime: 5 * 60 * 1000, // Consider data stale after 5 minutes
+    refetchOnWindowFocus: false,
+  });
+};
+
+// ==================== GET ACTIVE MEMBERS (NEW) ====================
+export const useActiveMembers = () => {
+  return useQuery({
+    queryKey: ['activeMembers'],
+    queryFn: () => userService.getActiveMembers(),
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
+// ==================== GET USERS BY ROLE (NEW) ====================
+export const useUsersByRole = (role: string) => {
+  return useQuery({
+    queryKey: ['usersByRole', role],
+    queryFn: () => userService.getUsersByRole(role),
+    enabled: !!role,
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
+// ==================== CREATE USER ====================
 export const useCreateUser = () => {
   const queryClient = useQueryClient();
 
@@ -26,6 +64,7 @@ export const useCreateUser = () => {
     mutationFn: (data: CreateUserData) => userService.createUser(data),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
+      queryClient.invalidateQueries({ queryKey: ['userStats'] }); // Add this
 
       // Custom toast with copy functionality
       toast.custom(
@@ -98,6 +137,7 @@ export const useCreateUser = () => {
   });
 };
 
+// ==================== UPDATE USER ====================
 export const useUpdateUser = () => {
   const queryClient = useQueryClient();
 
@@ -107,6 +147,7 @@ export const useUpdateUser = () => {
     onSuccess: (_, { id }) => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
       queryClient.invalidateQueries({ queryKey: ['user', id] });
+      queryClient.invalidateQueries({ queryKey: ['userStats'] }); // Add this
       toast.success('Member updated successfully');
     },
     onError: (error: any) => {
@@ -115,6 +156,7 @@ export const useUpdateUser = () => {
   });
 };
 
+// ==================== TOGGLE USER STATUS ====================
 export const useToggleUserStatus = () => {
   const queryClient = useQueryClient();
 
@@ -124,6 +166,7 @@ export const useToggleUserStatus = () => {
     onSuccess: (_, { id, isActive }) => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
       queryClient.invalidateQueries({ queryKey: ['user', id] });
+      queryClient.invalidateQueries({ queryKey: ['userStats'] }); // Add this
       toast.success(`Member ${isActive ? 'activated' : 'deactivated'} successfully`);
     },
     onError: (error: any) => {
@@ -132,6 +175,7 @@ export const useToggleUserStatus = () => {
   });
 };
 
+// ==================== DELETE USER ====================
 export const useDeleteUser = () => {
   const queryClient = useQueryClient();
 
@@ -139,6 +183,7 @@ export const useDeleteUser = () => {
     mutationFn: (id: string) => userService.deleteUser(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
+      queryClient.invalidateQueries({ queryKey: ['userStats'] }); // Add this
       toast.success('Member deleted successfully');
     },
     onError: (error: any) => {
@@ -147,10 +192,16 @@ export const useDeleteUser = () => {
   });
 };
 
+// ==================== RESET PASSWORD ====================
 export const useResetPassword = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (id: string) => userService.resetPassword(id),
     onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+      queryClient.invalidateQueries({ queryKey: ['userStats'] }); // Add this
+      
       toast.custom(
         (t) => (
           <div
