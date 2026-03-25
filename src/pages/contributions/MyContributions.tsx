@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useContributions } from '../../hooks/useContributions';
 import { formatCurrency } from '../../lib/utils';
-import { Wallet, CheckCircle, Clock, TrendingUp, RefreshCw, Upload, Eye, FileUp } from 'lucide-react';
+import { Wallet, CheckCircle, Clock, TrendingUp, RefreshCw, Eye, FileUp } from 'lucide-react';
 import UploadReceiptModal from '../../components/contributions/UploadReceiptModal';
 import Loader from '../../components/common/Loader';
 import type { Contribution } from '../../types/contribution.types';

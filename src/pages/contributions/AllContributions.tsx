@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import  { useState, useEffect, useCallback, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Calendar, Filter, Eye, CheckCircle, RefreshCw, X } from 'lucide-react';
 import { useAdminContributions } from '../../hooks/useAdminContributions';
@@ -10,7 +10,7 @@ import type { ContributionStatus } from '../../types/contribution.types';
 
 const AllContributions = () => {
     const navigate = useNavigate();
-    const { user, isSuperAdmin, isAdmin } = useAuth();
+    const {  isSuperAdmin, isAdmin } = useAuth();
     const [searchParams, setSearchParams] = useSearchParams();
     const [showGenerateModal, setShowGenerateModal] = useState(false);
     const [filters, setFilters] = useState({
@@ -159,7 +159,7 @@ const AllContributions = () => {
                     </button>
                     <button
                         onClick={() => setShowGenerateModal(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-white rounded-lg hover:from-amber-600 hover:to-yellow-700 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-amber-500 to-yellow-600 text-white rounded-lg hover:from-amber-600 hover:to-yellow-700 transition-colors"
                     >
                         <Calendar className="w-4 h-4" />
                         Generate Monthly
