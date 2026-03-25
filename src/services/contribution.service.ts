@@ -2,18 +2,19 @@
  * =========================
  * 📤 Contribution Service
  * =========================
+ * Handles all contribution-related API calls
  */
 
 import api from './api';
-import type {
-    Contribution,
-    ContributionStats,
-    ContributionSummary,
-    GenerateContributionRequest,
-    UploadReceiptResponse,
-    VerifyContributionRequest,
-    ContributionFilters,
-    PaginatedContributions
+import type { 
+  Contribution, 
+  ContributionStats, 
+  ContributionSummary,
+  GenerateContributionRequest,
+  UploadReceiptResponse,
+  VerifyContributionRequest,
+  ContributionFilters,
+  PaginatedContributions
 } from '../types/contribution.types';
 
 class ContributionService {
@@ -38,12 +39,13 @@ class ContributionService {
   }
 
   /**
-   * Upload receipt for a contribution
+   * Upload receipt for a contribution with amount
    */
-  async uploadReceipt(contributionId: string, file: File): Promise<UploadReceiptResponse> {
+  async uploadReceipt(contributionId: string, amount: number, file: File): Promise<UploadReceiptResponse> {
     try {
       const formData = new FormData();
       formData.append('receipt', file);
+      formData.append('amount', amount.toString());
 
       const response = await api.post(`${this.baseUrl}/${contributionId}/receipt`, formData, {
         headers: {

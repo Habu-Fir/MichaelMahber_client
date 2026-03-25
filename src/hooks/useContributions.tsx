@@ -6,7 +6,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
-import  contributionService from '../services/contribution.service';
+import contributionService from '../services/contribution.service';
 import type { Contribution, ContributionStats } from '../types/contribution.types';
 
 export const useContributions = () => {
@@ -43,14 +43,14 @@ export const useContributions = () => {
     }, [user?._id]);
 
     /**
-     * Upload receipt for a contribution
+     * Upload receipt for a contribution with amount
      */
-    const uploadReceipt = useCallback(async (contributionId: string, file: File) => {
+    const uploadReceipt = useCallback(async (contributionId: string, amount: number, file: File) => {
         setLoading(true);
         setError(null);
 
         try {
-            const result = await contributionService.uploadReceipt(contributionId, file);
+            const result = await contributionService.uploadReceipt(contributionId, amount, file);
             console.log('Upload successful:', result);
             // Refresh contributions after upload
             await fetchMyContributions();
@@ -69,7 +69,6 @@ export const useContributions = () => {
      * Check if user can upload receipt for a contribution
      */
     const canUpload = useCallback((contribution: Contribution): boolean => {
-        // Safety checks
         if (!contribution) {
             console.log('canUpload: No contribution provided');
             return false;
@@ -80,27 +79,18 @@ export const useContributions = () => {
             return false;
         }
 
-        // Check if memberId exists and matches
         const memberId = contribution.memberId?._id || contribution.memberId;
         const isOwner = memberId === user._id;
-
-        // Check status
         const isPending = contribution.status === 'pending';
-
-        // Check if receipt already exists
         const noReceipt = !contribution.receipt;
 
         const result = isOwner && isPending && noReceipt;
 
         console.log('canUpload check:', {
             contributionId: contribution._id,
-            memberId: memberId,
-            userId: user._id,
             isOwner,
             status: contribution.status,
-            isPending,
             hasReceipt: !!contribution.receipt,
-            noReceipt,
             result
         });
 
