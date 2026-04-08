@@ -376,7 +376,7 @@ const LoanDetailsPage = () => {
                             <button
                                 onClick={handleSign}
                                 disabled={signLoan.isPending}
-                                className="flex-1 px-4 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/30"
+                                className="flex-1 px-4 py-3 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/30"
                             >
                                 {signLoan.isPending ? (
                                     <>
@@ -400,7 +400,7 @@ const LoanDetailsPage = () => {
                 {canSign && (
                     <button
                         onClick={() => setShowSignConfirmModal(true)}
-                        className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold text-lg rounded-xl transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 flex items-center gap-3 shadow-xl shadow-amber-500/40 border border-amber-400"
+                        className="px-8 py-4 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold text-lg rounded-xl transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 flex items-center gap-3 shadow-xl shadow-amber-500/40 border border-amber-400"
                     >
                         <Shield className="w-6 h-6" />
                         {signLoan.isPending ? 'Signing...' : 'Sign to Approve'}
@@ -411,7 +411,7 @@ const LoanDetailsPage = () => {
                     <button
                         onClick={handleApprove}
                         disabled={approveLoan.isPending}
-                        className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold text-lg rounded-xl transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 flex items-center gap-3 shadow-xl shadow-amber-500/40 border border-amber-400"
+                        className="px-8 py-4 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold text-lg rounded-xl transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 flex items-center gap-3 shadow-xl shadow-amber-500/40 border border-amber-400"
                     >
                         <CheckCircle className="w-6 h-6" />
                         {approveLoan.isPending ? 'Approving...' : 'Approve Loan'}
@@ -421,7 +421,7 @@ const LoanDetailsPage = () => {
                 {canDisburse && (
                     <button
                         onClick={() => setShowDisburseModal(true)}
-                        className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold text-lg rounded-xl transition-all transform hover:scale-105 active:scale-95 flex items-center gap-3 shadow-xl shadow-amber-500/40 border border-amber-400"
+                        className="px-8 py-4 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold text-lg rounded-xl transition-all transform hover:scale-105 active:scale-95 flex items-center gap-3 shadow-xl shadow-amber-500/40 border border-amber-400"
                     >
                         <Send className="w-6 h-6" />
                         Disburse Funds
@@ -432,7 +432,7 @@ const LoanDetailsPage = () => {
                 {canMakePayment && (
                     <button
                         onClick={() => navigate(`/loans/${id}/pay`)}
-                        className="px-8 py-4 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold text-lg rounded-xl transition-all transform hover:scale-105 active:scale-95 flex items-center gap-3 shadow-xl shadow-amber-500/40 border border-amber-400"
+                        className="px-8 py-4 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-bold text-lg rounded-xl transition-all transform hover:scale-105 active:scale-95 flex items-center gap-3 shadow-xl shadow-amber-500/40 border border-amber-400"
                     >
                         <DollarSign className="w-6 h-6" />
                         Make Payment
@@ -488,7 +488,7 @@ const LoanDetailsPage = () => {
 
                         {/* Daily Interest Accrual - Updated with 1.5% explanation */}
                         {loan.status === 'active' && (
-                            <div className="mt-4 p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-200">
+                            <div className="mt-4 p-4 bg-linear-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-200">
                                 <div className="flex items-center gap-2 mb-3">
                                     <TrendingIcon className="w-5 h-5 text-amber-600" />
                                     <h3 className="font-semibold text-amber-800">Daily Interest Accrual (1.5% Monthly)</h3>
@@ -609,7 +609,7 @@ const LoanDetailsPage = () => {
                         <h2 className="text-lg font-semibold text-gray-900 mb-4">Member Information</h2>
 
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold">
+                            <div className="w-12 h-12 bg-linear-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold">
                                 {loan.memberName?.charAt(0).toUpperCase() || 'U'}
                             </div>
                             <div>
@@ -776,7 +776,7 @@ const LoanDetailsPage = () => {
                                 <button
                                     onClick={handleDisburse}
                                     disabled={disburseLoan.isPending}
-                                    className="flex-1 px-4 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white rounded-xl disabled:opacity-50"
+                                    className="flex-1 px-4 py-3 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white rounded-xl disabled:opacity-50"
                                 >
                                     {disburseLoan.isPending ? 'Dispursing...' : 'Confirm Disburse'}
                                 </button>

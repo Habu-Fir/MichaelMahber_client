@@ -116,7 +116,7 @@ const Members = () => {
                 {(isSuperAdmin || isAdmin) && (
                     <button
                         onClick={() => setShowCreateModal(true)}
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white rounded-xl transition-all transform hover:scale-105 shadow-lg shadow-amber-500/30 font-medium"
+                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-linear-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white rounded-xl transition-all transform hover:scale-105 shadow-lg shadow-amber-500/30 font-medium"
                     >
                         <UserPlus className="w-5 h-5" />
                         <span className="font-medium">Add Member</span>
