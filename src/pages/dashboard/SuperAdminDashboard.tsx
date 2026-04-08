@@ -7,7 +7,7 @@ import {
     Clock,
     Shield,
     DollarSign,
-    Wallet,
+
     CheckCircle,
     Calendar,
     History,

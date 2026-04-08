@@ -395,7 +395,7 @@ import { useLoans } from '../../hooks/useLoans';
 import { useSystem } from '../../hooks/useSystem';
 import Loader from '../../components/common/Loader';
 import { formatCurrency } from '../../lib/utils';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const MemberDashboard = () => {
     const { user } = useAuth();
